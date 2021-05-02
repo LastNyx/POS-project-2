@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\product as productModel;
 
-class Product extends Component
+class Stock extends Component
 {
 
     public $item_id,$codeitem,$name,$unitlevel,$price,$capital_price,$stock;
@@ -18,14 +18,13 @@ class Product extends Component
     ];
 
     protected $listeners = [
-        'productStored' => 'handleStored',
         'productUpdate' => 'handleUpdate'
     ];
 
     public function render()
     {
         $products = productModel::orderBy('created_at','DESC')->get();
-        return view('livewire.product', [
+        return view('livewire.stock', [
             'products' =>$products,
             'products' =>productModel::where('name', 'like', '%'.$this->search.'%')
             ->orwhere('codeitem', 'like', '%'.$this->search.'%')->get(),
@@ -36,10 +35,6 @@ class Product extends Component
         $this->updateMode = True;
         $products = productModel::find($id);
         $this->emit('getProducts', $products);
-    }
-
-    public function handleStored($products){
-        session()->flash('info', 'Produk berhasil ditambahkan');
     }
 
     public function handleUpdate(){

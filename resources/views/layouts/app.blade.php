@@ -90,9 +90,9 @@
                     <a class="nav-link" style="pointer-events: none; cursor: default;" href="#">|</a>
                     <a class="nav-link" href="">Penjualan</a>
                     <a class="nav-link" style="pointer-events: none; cursor: default;" href="#">|</a>
-                    <a class="nav-link" href="\products">Barang</a>
+                    <a class="nav-link" href="\products" wire:click.prevent="productToggle()">Barang</a>
                     <a class="nav-link" style="pointer-events: none; cursor: default;" href="#">|</a>
-                    <a class="nav-link" href="stok.html">Stok</a>
+                    <a class="nav-link" href="\stock" wire:click.prevent="stockToggle()">Stok</a>
                     <a class="nav-link" style="pointer-events: none; cursor: default;" href="#">|</a>
                     </div>
                 </div>

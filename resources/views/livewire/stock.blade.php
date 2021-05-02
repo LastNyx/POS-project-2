@@ -3,11 +3,33 @@
         <div class = "col-md-5">
             <div class ="card">
                 <div class="card-body">
-                    <h2 class="font-weight-bold mb-3">Buat Produk</h2>
+                    <h2 class="font-weight-bold mb-3">Edit Stok</h2>
                     @if($updateMode == False)
-                        <livewire:product-create></livewire:product-create>
+                    <form>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping">kode Barang</span>
+                            <input wire:model="codeitem" type="text" class="form-control" readonly>
+                            @error('codeitem') <small class="text-danger">{{$message}}</small>@enderror
+                        </div>
+                        <div class="input-group flex-nowrap;" style="margin-top: 15px;">
+                            <span class="input-group-text" id="addon-wrapping">Nama Barang</span>
+                            <input wire:model="name" type="text" class="form-control"readonly>
+                            @error('name') <small class="text-danger">{{$message}}</small>@enderror
+                        </div>
+                        <div class="input-group flex-nowrap;" style="margin-top: 15px;">
+                            <span class="input-group-text" id="addon-wrapping">Satuan</span>
+                            <input wire:model="unitlevel" type="text" class="form-control" readonly>
+                            @error('unitlevel') <small class="text-danger">{{$message}}</small>@enderror
+                        </div>
+                        <div class="input-group flex-nowrap;" style="margin-top: 15px;">
+                            <span class="input-group-text" id="addon-wrapping">Stok</span>
+                            <input wire:model="stock" type="text" class="form-control" readonly>
+                            @error('stock') <small class="text-danger">{{$message}}</small>@enderror
+                        </div>
+                    </form>
+
                     @else
-                        <livewire:product-edit></livewire:product-edit>
+                        <livewire:stock-edit></livewire:stock-edit>
                     @endif
                 </div>
             </div>
@@ -27,8 +49,6 @@
                                 <th scope="col">Kode</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Satuan</th>
-                                <th scope="col">Harga</th>
-                                <th scope="col">Modal</th>
                                 <th scope="col">Stok</th>
                                 <th scope="col" style="text-align: center;">Action</th>
                             </tr>
@@ -39,8 +59,6 @@
                                 <td>{{$product->codeitem}}</td>
                                 <td>{{$product->name}}</td>
                                 <td>{{$product->unitlevel}}</td>
-                                <td>{{'Rp. '.number_format($product->price,0,",",".")}}</td>
-                                <td>{{'Rp. '.number_format($product->capital_price,0,",",".")}}</td>
                                 <td>{{$product->stock}}</td>
                                 <td style="text-align:center">
                                     <button wire:click="getProducts({{ $product->id }})" class='btn btn-info btn-sm'>Edit</a>

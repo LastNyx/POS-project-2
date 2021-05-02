@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Product;
+use App\Http\Livewire\Stock;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/products', Product::class);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware'=> ['auth']], function () {
+    Route::get('/products', Product::class);
+    Route::get('/stock', Stock::class);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
