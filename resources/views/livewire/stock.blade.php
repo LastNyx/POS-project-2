@@ -50,19 +50,23 @@
                                 <th scope="col">Nama</th>
                                 <th scope="col">Satuan</th>
                                 <th scope="col">Stok</th>
-                                <th scope="col" style="text-align: center;">Action</th>
+                                <th scope="col" style="text-align: center;" colspan="2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($products as $index => $product)
                             <tr>
                                 <td>{{$product->codeitem}}</td>
-                                <td>{{$product->name}}</td>
+                                <td data-toggle="tooltip" title="{{$product->name}}" style="white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis; max-width: 12ch;">{{$product->name}}</td>
                                 <td>{{$product->unitlevel}}</td>
                                 <td>{{$product->stock}}</td>
-                                <td style="text-align:center">
-                                    <button wire:click="getProducts({{ $product->id }})" class='btn btn-info btn-sm'>Edit</a>
-                                    <button wire:click="destroy({{ $product->id }})" class='btn btn-danger btn-sm'>Hapus</a>
+                                <td style="text-align:right">
+                                    <button wire:click="getProducts({{ $product->id }})" class='btn btn-info btn-sm'>Edit</button>
+                                </td>
+                                <td style="text-align:left">
+                                    <button wire:click="destroy({{ $product->id }})" class='btn btn-danger btn-sm'>Hapus</button>
                                 </td>
                             </tr>
                             @endforeach
