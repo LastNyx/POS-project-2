@@ -37,13 +37,13 @@
 
         <div class ="col-md-7" >
             <div class ="card">
-                <div class="card-body " style="background-color:dodgerblue">
+                <div class="card-body " >
                     <h2 class="font-weight-bold mb-3">List Produk</h2>
                     <div class="input-group flex-nowrap;" style="margin-top: 10px; margin-bottom: 15px;">
                         <span class="input-group-text" id="addon-wrapping"> Cari</span>
                         <input wire:model="search" type="search" class="form-control" placeholder="Nama Barang" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
-                    <table class="table ">
+                    <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">Kode</th>
@@ -71,6 +71,11 @@
                             </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" style="text-align: center;">{{$products->links()}}</td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>

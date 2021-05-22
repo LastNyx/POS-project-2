@@ -4,14 +4,18 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\product as productModel;
+use Livewire\WithPagination;
 
 class Product extends Component
 {
+    use WithPagination;
 
     public $item_id,$codeitem,$name,$unitlevel,$price,$capital_price,$stock;
     public $updateMode = false;
     public $stockMode = false;
     public $search;
+
+    protected $paginationTheme = 'bootstrap';
 
     protected $queryString = [
         'search' => ['except' => ''],
@@ -28,7 +32,7 @@ class Product extends Component
         return view('livewire.product', [
             'products' =>$products,
             'products' =>productModel::where('name', 'like', '%'.$this->search.'%')
-            ->orwhere('codeitem', 'like', '%'.$this->search.'%')->get(),
+            ->orwhere('codeitem', 'like', '%'.$this->search.'%')->paginate(5),
         ]);
     }
 

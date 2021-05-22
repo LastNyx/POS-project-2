@@ -7,8 +7,8 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>SUMBER JAYA</title>
+    <!--{/{config('app.name', 'Laravel') }}-->
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                     <a class="nav-link" style="pointer-events: none; cursor: default;" href="#">|</a>
-                    <a class="nav-link" href="">Penjualan</a>
+                    <a class="nav-link" href="\transaction">Penjualan</a>
                     <a class="nav-link" style="pointer-events: none; cursor: default;" href="#">|</a>
                     <a class="nav-link" href="\products" wire:click.prevent="productToggle()">Barang</a>
                     <a class="nav-link" style="pointer-events: none; cursor: default;" href="#">|</a>
@@ -85,5 +85,32 @@
         </main>
     </div>
     @livewireScripts
+    <script>
+        window.addEventListener('openModal', event => {
+            $("#ModalQty").modal('show');
+            $('#ModalQty').on('shown.bs.modal', function() {
+            $('#setfocus').focus();
+            })
+        })
+
+        window.addEventListener('closeModal', event => {
+            $("#ModalQty").modal('hide');
+        })
+
+        window.addEventListener('openModalPrice', event => {
+            $("#ModalPrice").modal('show');
+            $('#ModalPrice').on('shown.bs.modal', function() {
+            $('#setfocus2').focus();
+            })
+        })
+
+        window.addEventListener('closeModalPrice', event => {
+            $("#ModalPrice").modal('hide');
+        })
+
+        window.addEventListener('openModalError', event => {
+            $("#ModalError").modal('show');
+        })
+        </script>
 </body>
 </html>

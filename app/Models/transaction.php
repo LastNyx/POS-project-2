@@ -5,13 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class transaction extends Model
 {
-    protected $table = 'product';
+    protected $table = 'transaction';
     protected $guarded = [];
-    protected $attributes = [
-        'stock' => 0,
-     ];
     use HasFactory;
 
     public function details(){
