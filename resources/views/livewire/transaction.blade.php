@@ -12,8 +12,8 @@
                                 <th scope="col" style="text-align:center">Action</th>
                                 <th scope="col">Kode</th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">Satuan</th>
                                 <th scope="col">qty</th>
+                                <th scope="col">Satuan</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">Subtotal</th>
                             </tr>
@@ -32,8 +32,8 @@
                                     <td data-toggle="tooltip" title="{{$detail->Product->name}}" style="white-space: nowrap;
                                         overflow: hidden;
                                         text-overflow: ellipsis; max-width: 12ch;">{{$detail->Product->name}}</td>
-                                    <td>{{$detail->Product->unitlevel}}</td>
                                     <td wire:click="editqty({{$detail->id}})" style="cursor: pointer;">{{$detail->qty}}</td>
+                                    <td>{{$detail->Product->unitlevel}}</td>
                                     <td wire:click="editprice({{$detail->id}})" style="cursor: pointer;">{{'Rp. '.number_format($detail->price,0,",",".")}}</td>
                                     <td style="display:none;">{{$detail->Product->id}}</td>
                                     <td>{{'Rp. '.number_format($detail->price * $detail->qty,0,",",".")}}</td>
@@ -98,7 +98,6 @@
         </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" wire:click="confirmEditQty({{$detail_id}})">Save changes</button>
         </div>
       </div>
@@ -127,7 +126,6 @@
         </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" wire:click.prevent="confirmEditPrice({{$detail_id}})">Save changes</button>
         </div>
       </div>
@@ -163,7 +161,7 @@
                     <form onkeydown="return event.key != 'Enter';">
                         <div class="input-group">
                             <span class="input-group-text" id="addon-wrapping">Cari</span>
-                            <input wire:model="search" type="search" class="form-control" placeholder="Nama Barang/Kode Barang" aria-label="Username" aria-describedby="addon-wrapping">
+                            <input wire:model="search" type="search" class="form-control" placeholder="Nama Barang/Kode Barang" aria-label="Username" aria-describedby="addon-wrapping" id="setfocusitem">
                         </div>
                             @if(!empty($search))
                                 <div class="input-group flex-nowrap" style="margin-top: 15px;">

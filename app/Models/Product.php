@@ -11,6 +11,8 @@ class Product extends Model
     protected $guarded = [];
     protected $attributes = [
         'stock' => 0,
+        'price' => 1,
+        'capital_price' => 1,
      ];
     use HasFactory;
 

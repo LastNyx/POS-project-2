@@ -95,6 +95,8 @@
 
         window.addEventListener('closeModal', event => {
             $("#ModalQty").modal('hide');
+            $('#setfocusitem').focus();
+
         })
 
         window.addEventListener('openModalPrice', event => {
@@ -106,6 +108,7 @@
 
         window.addEventListener('closeModalPrice', event => {
             $("#ModalPrice").modal('hide');
+            $('#setfocusitem').focus();
         })
 
         window.addEventListener('openModalError', event => {
