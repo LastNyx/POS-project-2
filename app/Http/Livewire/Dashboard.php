@@ -25,6 +25,7 @@ class Dashboard extends Component
     {
         $transactions = TransactionModel::whereMonth('created_at', '=', '05')->orderBy('created_at','DESC')->paginate(5);
         $totaltransactions = TransactionModel::whereMonth('created_at', '=', '05')->sum('total');
+        
         return view('livewire.dashboard', [
             'transactions' => $transactions,
             'totaltransactions' => $totaltransactions

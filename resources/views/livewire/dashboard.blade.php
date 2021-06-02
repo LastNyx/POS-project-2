@@ -5,10 +5,23 @@
             <div class ="card">
                 <div class="card-body ">
                     <h2 class="font-weight-bold mb-3">DASHBOARD</h2>
+
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">Transaksi Bulan:</label>
-                        <Select class="form-control" aria-label="Default select example">
-                            <option value="05">May</option>
+                        <label for="exampleFormControlSelect1">Transaksi Bulan :</label>
+                        <Select style="width: 5cm" id="bulan" name="bulan" class="form-control" aria-label="Default select example">
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <option value="04">April</option>
+                            <option value="05">Mei</option>
+                            <option value="06">Juni</option>
+                            <option value="07">Juli</option>
+                            <option value="08">Agustus</option>
+                            <option value="09">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+
                         </Select>
                     </div>
                     <div class="input-group flex-nowrap;" style="margin-top: 10px; margin-bottom: 15px;">

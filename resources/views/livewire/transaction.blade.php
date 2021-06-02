@@ -168,7 +168,7 @@
                                     <table class="table table-hover">
                                         <?php $count = 0; ?>
                                             @foreach ($products as $product)
-                                                <?php if($count == 3) break; ?>
+                                                <?php if($count == 4) break; ?>
                                                     <tbody>
                                                         <tr wire:click="showProduct({{ $product->id }})" style="cursor: pointer;">
                                                             <td>{{$product->codeitem}}</td>
@@ -186,6 +186,7 @@
                             <div class="input-group" style="margin-top: 15px;">
                                 <span class="input-group-text" id="addon-wrapping">Bayar</span>
                                 <input wire:model="pay" type="number" class="form-control">
+                                @error('pay') <small class="text-danger">{{$message}}</small>@enderror
                             </div>
                         <div class="input-group flex-nowrap;" style="margin-top: 15px;">
                             <button wire:click.prevent="saveTransaction(@php
