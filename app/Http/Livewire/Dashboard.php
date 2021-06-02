@@ -14,6 +14,7 @@ class Dashboard extends Component
 
 
     public $transaction_id = 0;
+    public $month;
 
     protected $listeners = [
         'TransactionIdChange'
@@ -23,9 +24,9 @@ class Dashboard extends Component
 
     public function render()
     {
-        $transactions = TransactionModel::whereMonth('created_at', '=', '05')->orderBy('created_at','DESC')->paginate(5);
-        $totaltransactions = TransactionModel::whereMonth('created_at', '=', '05')->sum('total');
-        
+        $transactions = TransactionModel::whereMonth('created_at', '=', $this->month)->orderBy('created_at','DESC')->paginate(5);
+        $totaltransactions = TransactionModel::whereMonth('created_at', '=', $this->month)->sum('total');
+
         return view('livewire.dashboard', [
             'transactions' => $transactions,
             'totaltransactions' => $totaltransactions
