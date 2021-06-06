@@ -10,7 +10,7 @@ class Product extends Component
 {
     use WithPagination;
 
-    public $item_id,$codeitem,$name,$unitlevel,$price,$capital_price,$stock;
+    public $item_id,$codeitem,$name,$unitlevel,$price,$capital_price,$stock,$product_id;
     public $updateMode = false;
     public $stockMode = false;
     public $search;
@@ -51,13 +51,21 @@ class Product extends Component
         session()->flash('message', 'Users Updated Successfully.');
     }
 
+    public function deleteItems($id){
+        $product = productModel::find($id);
+        $this->product_id = $product['id'];
+        $this->dispatchBrowserEvent('openModalDelete');
+
+
+    }
+
     public function destroy($id)
     {
         $products = ProductModel::find($id);
         $products->delete();
 
 
-        session()->flash('message', $products->name . ' Dihapus');
+        $this->dispatchBrowserEvent('closeModalDelete');
     }
 
 

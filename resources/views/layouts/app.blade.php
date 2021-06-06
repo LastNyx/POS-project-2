@@ -114,6 +114,14 @@
         window.addEventListener('openModalError', event => {
             $("#ModalError").modal('show');
         })
+
+        window.addEventListener('openModalDelete', event => {
+            $("#ModalDelete").modal('show');
+        })
+
+        window.addEventListener('closeModalDelete', event => {
+            $("#ModalDelete").modal('hide');
+        })
         </script>
 </body>
 </html>

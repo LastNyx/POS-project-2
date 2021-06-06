@@ -2,7 +2,7 @@
     <div class="container-fluid" style="margin-top: 15px; margin-bottom:15px;">
         <button wire:click='resetTransactionId()' type="button" class='btn btn-primary btn-sm'>Back</button>
     </div>
-    <div class ="col-md-12" >
+    <div class ="col" >
         <div class ="card">
             <div class="card-body ">
                 <h2 class="font-weight-bold mb-3">Detail Transaksi No.{{$transaction_id}}</h2>
