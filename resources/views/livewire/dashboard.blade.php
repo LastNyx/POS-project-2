@@ -111,13 +111,35 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                        @php
+                                            $groups = array();
+                                        @endphp
                                         @foreach ($transactionAll as $index => $transaction)
                                             @foreach ($transaction->details as $details)
-                                                <tr>
-                                                    <td>{{$details->transaction_id}}</td>
-                                                    <td>{{$details->Product->name}}</td>
-                                                </tr>
+                                                @php
+                                                    $key = $details->product_id;
+                                                    if (!array_key_exists($key, $groups)) {
+                                                        $groups[$key] = array(
+                                                            'id' => $details->transaction_id,
+                                                            'name' => $details->Product->name,
+                                                            'qty' => $details->qty,
+                                                            'price' => $details->price*$details->qty,
+                                                        );
+                                                    } else {
+                                                        $groups[$key]['qty'] = $groups[$key]['qty'] + $details->qty;
+                                                        $groups[$key]['price'] = $groups[$key]['price'] + ($details->price*$details->qty);
+                                                    }
+                                                @endphp
                                             @endforeach
+                                        @endforeach
+
+                                        @foreach ($groups as $key => $value)
+                                            <tr>
+                                                <td>{{$key}}</td>
+                                                <td>{{$groups[$key]['name']}}</td>
+                                                <td>{{$groups[$key]['price']}}</td>
+                                                <td>{{$groups[$key]['qty']}}</td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
