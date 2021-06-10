@@ -51,21 +51,21 @@
                                 <th scope="col">Satuan</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">Modal</th>
-                                <th scope="col">Stok</th>
                                 <th scope="col" style="text-align: center;" colspan="2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($products as $index => $product)
                             <tr>
-                                <td>{{$product->codeitem}}</td>
+                                <td style="white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis; max-width: 2ch;">{{$product->codeitem}}</td>
                                 <td data-toggle="tooltip" title="{{$product->name}}" style="white-space: nowrap;
                                     overflow: hidden;
-                                    text-overflow: ellipsis; max-width: 12ch;">{{$product->name}}</td>
+                                    text-overflow: ellipsis; max-width: 15ch;">{{$product->name}}</td>
                                 <td>{{$product->unitlevel}}</td>
                                 <td>{{'Rp. '.number_format($product->price,0,",",".")}}</td>
                                 <td>{{'Rp. '.number_format($product->capital_price,0,",",".")}}</td>
-                                <td>{{$product->stock}}</td>
                                 <td style="text-align:right">
                                     <button wire:click="getProducts({{ $product->id }})" class='btn btn-info btn-sm'>Edit</button>
                                 </td>

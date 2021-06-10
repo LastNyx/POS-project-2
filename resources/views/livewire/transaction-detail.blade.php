@@ -13,7 +13,6 @@
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col" style="text-align:center">Action</th>
                                 <th scope="col">Kode</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Satuan</th>
@@ -29,9 +28,6 @@
                             @foreach ($details as $index => $detail)
                             @if($detail->transaction_id == $transaction_id)
                                 <tr>
-                                    <td style="text-align:center">
-                                        <button wire:click="deleteDetail({{$detail->id}})" class='btn btn-danger btn-sm'>Hapus</button>
-                                    </td>
                                     <td>{{$detail->Product->codeitem}}</td>
                                     <td data-toggle="tooltip" title="{{$detail->Product->name}}" style="white-space: nowrap;
                                         overflow: hidden;
@@ -50,15 +46,15 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                            <td colspan="6" style="text-align:right"><b>TOTAL</b></td>
+                            <td colspan="5" style="text-align:right"><b>TOTAL</b></td>
                             <td>{{'Rp. '.number_format($total,0,",",".")}}</td>
                             </tr>
                             <tr>
-                                <td colspan="6" style="text-align:right"><b>BAYAR</b>
+                                <td colspan="5" style="text-align:right"><b>BAYAR</b>
                                 <td>{{'Rp. '.number_format($pay,0,",",".")}}</td>
                             </tr>
                             <tr>
-                                <td colspan="6" style="text-align:right"><b>KEMBALIAN</b>
+                                <td colspan="5" style="text-align:right"><b>KEMBALIAN</b>
                                 <td>{{'Rp. '.number_format($pay-$total,0,",",".")}}</td>
                             </tr>
                         </tfoot>

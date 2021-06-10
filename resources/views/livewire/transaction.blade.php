@@ -28,7 +28,9 @@
                                     <td style="text-align:center">
                                         <button wire:click="deleteDetail({{$detail->id}})" class='btn btn-danger btn-sm'>Hapus</button>
                                     </td>
-                                    <td>{{$detail->Product->codeitem}}</td>
+                                    <td style="white-space: nowrap;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis; max-width: 2ch;">{{$detail->Product->codeitem}}</td>
                                     <td data-toggle="tooltip" title="{{$detail->Product->name}}" style="white-space: nowrap;
                                         overflow: hidden;
                                         text-overflow: ellipsis; max-width: 12ch;">{{$detail->Product->name}}</td>
