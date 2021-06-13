@@ -52,4 +52,8 @@ class Dashboard extends Component
     public function TransactionIdChange($id){
         $this->transaction_id = $id;
     }
+
+    public function printSellings(){
+        $this->dispatchBrowserEvent('printSellings');
+    }
 }

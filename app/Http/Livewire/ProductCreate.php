@@ -9,7 +9,6 @@ class ProductCreate extends Component
 {
     public $item_id,$codeitem,$name,$unitlevel,$price,$capital_price,$stock;
     public $updateMode = false;
-    public $stockMode = false;
 
     public function render()
     {
@@ -23,7 +22,6 @@ class ProductCreate extends Component
         $this->unitlevel ='';
         $this->price = '';
         $this->capital_price = '';
-        $this->stock = '';
     }
 
     public function store()

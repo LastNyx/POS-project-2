@@ -6534,6 +6534,26 @@ button.bg-dark:focus {
   .d-print-inline-flex {
     display: inline-flex !important;
   }
+
+  .collapse {
+    display: block !important;
+    height: auto !important;
+    margin:0;
+    padding:0;
+  }
+
+  #dashboard {
+    margin:0;
+    padding:0;
+    display:none !important;
+  }
+
+  #collapseSummary {
+    visibility: visible;
+    margin:0;
+    padding:0;
+  }
+
 }
 .embed-responsive {
   position: relative;
@@ -10001,4 +10021,12 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+/*custom css*/
+
+p{
+    padding: 0px;
+    margin: 0;
+    font-size:12px"
 }

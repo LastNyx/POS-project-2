@@ -20,6 +20,13 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        p{
+            padding: 0px;
+            margin: 0;
+            font-size:11px;
+        }
+    </style>
     @livewireStyles
 </head>
 <body>
@@ -120,6 +127,16 @@
         window.addEventListener('closeModalDelete', event => {
             $("#ModalDelete").modal('hide');
         })
+
+        function myFunction()
+        {
+            window.print();
+        }
+
+        window.addEventListener('printSellings', event => {
+            window.print();
+        })
+
         </script>
 </body>
 </html>

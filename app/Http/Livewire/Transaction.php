@@ -13,6 +13,7 @@ class Transaction extends Component
     public $item_id,$codeitem,$name,$unitlevel,$price,$detail_id,$qty;
     public $pay;
     public $TransactionError;
+    public $LastSavedID;
     public $search;
     public $updateMode = false;
 
@@ -25,7 +26,7 @@ class Transaction extends Component
             'products' =>$products,
             'products' =>productModel::where('name', 'like', '%'.$this->search.'%')
             ->orwhere('codeitem', 'like', '%'.$this->search.'%')->get()]);
-            
+
     }
 
     public function showProduct($id){
@@ -102,9 +103,11 @@ class Transaction extends Component
             'total' => $total,
             'pay'=> $this->pay,
         ]);
-        
+
         $this->pay = 0;
         detailsModel::where('transaction_id', '=', 0)->update(['transaction_id'=> $transaction['id']]);
+
+        $this->LastSavedID = $transaction['id'];
     }
 
 

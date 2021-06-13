@@ -6,7 +6,7 @@
     </div>
     <div class="input-group flex-nowrap;" style="margin-top: 15px;">
         <span class="input-group-text" id="addon-wrapping">Nama Barang</span>
-        <input wire:model="name" type="text" class="form-control">
+        <input wire:model="name" type="text" class="form-control" maxlength="40">
         @error('name') <small class="text-danger">{{$message}}</small>@enderror
     </div>
     <div class="input-group flex-nowrap;" style="margin-top: 15px;">

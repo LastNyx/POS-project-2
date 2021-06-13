@@ -1,8 +1,13 @@
 <div>
+    @php
+        $totalpenjualan = 0;
+        $totalpenjualanmodal = 0;
+    @endphp
+
     @if($transaction_id == 0)
     <div class="row">
         <div class ="col">
-            <div class ="card">
+            <div class ="card" id="dashboard">
                 <div class="card-body">
                     <div class="container-fluid">
                         <div class="row">
@@ -57,9 +62,6 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php
-                                            $totalpenjualan = 0
-                                        @endphp
                                         @foreach ($transactions as $index => $transaction)
                                             <tr>
                                                 <td>{{str_pad($transaction->id, 5, "0", STR_PAD_LEFT)}}</td>
@@ -77,10 +79,6 @@
                                         <tr>
                                             <td colspan="3">{{$transactions->links()}}</td>
                                         </tr>
-                                        <tr>
-                                        <td><b>TOTAL PENJUALAN BULAN INI</b></td>
-                                        <td colspan="2">{{'Rp. '.number_format($totaltransactions,0,",",".")}}</td>
-                                        </tr>
                                     </tfoot>
                                 </table>
                             </div>
@@ -94,55 +92,106 @@
         @endif
     </div>
 
+    <div class="row" style="margin-top: 15px;" id="dashboard">
+        <div class="col text-center">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseSummary">Rangkuman Penjualan Bulanan</button>
+        </div>
+    </div>
+
     <div class ="row" style="margin-top: 15px;">
         <div class="col">
-            <div class ="card">
-                <div class="card-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                            $groups = array();
-                                        @endphp
-                                        @foreach ($transactionAll as $index => $transaction)
-                                            @foreach ($transaction->details as $details)
+            <div class="collapse" id="collapseSummary">
+                <div class ="card">
+                    <div class="card-body">
+                        <div class="container-fluid" id="Sellings">
+                            <div class="row">
+                                <div class="col">
+                                    <h2>Rangkuman Penjualan Bulanan</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr style="text-align: center;">
+                                            <th scope="col">Id_barang</th>
+                                            <th scope="col">Nama Barang</th>
+                                            <th scope="col">Harga Modal</th>
+                                            <th scope="col">Harga Jual</th>
+                                            <th scope="col">Banyak Terjual</th>
+                                            <th scope="col">Satuan</th>
+                                            <th scope="col">Harga Jual Total</th>
+                                            <th scope="col">Keuntungan</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $groups = array();
+                                            @endphp
+                                            @foreach ($transactionAll as $index => $transaction)
+                                                @foreach ($transaction->details as $details)
+                                                    @php
+                                                        $key = $details->product_id;
+                                                        if (!array_key_exists($key, $groups)) {
+                                                            $groups[$key] = array(
+                                                                'id' => $details->transaction_id,
+                                                                'name' => $details->Product->name,
+                                                                'qty' => $details->qty,
+                                                                'price' => $details->price,
+                                                                'price_total' => $details->price*$details->qty,
+                                                                'capital_price' => $details->Product->capital_price,
+                                                                'capital_price_total' => $details->Product->capital_price*$details->qty,
+                                                                'satuan' => $details->Product->unitlevel
+                                                            );
+                                                        } else {
+                                                            $groups[$key]['qty'] = $groups[$key]['qty'] + $details->qty;
+                                                            $groups[$key]['price_total'] = $groups[$key]['price_total'] + ($details->price*$details->qty);
+                                                            $groups[$key]['capital_price_total'] = $groups[$key]['capital_price_total'] + ($details->Product->capital_price*$details->qty);
+                                                        }
+                                                    @endphp
+                                                @endforeach
+                                            @endforeach
+
+                                            @php
+                                                function cmp($a, $b) {
+                                                    return $a['qty'] < $b['qty'];
+                                                }
+
+                                                usort($groups, "cmp");
+                                            @endphp
+
+                                            @foreach ($groups as $key => $value)
+                                                <tr>
+                                                    <td>{{$key+1}}</td>
+                                                    <td data-toggle="tooltip" title="{{$groups[$key]['name']}}" style="white-space: nowrap;
+                                                        overflow: hidden;
+                                                        text-overflow: ellipsis; max-width: 20ch;">{{$groups[$key]['name']}}</td>
+                                                    <td>{{'Rp. '.number_format($groups[$key]['capital_price'],0,",",".")}}</td>
+                                                    <td>{{'Rp. '.number_format($groups[$key]['price'],0,",",".")}}</td>
+                                                    <td>{{$groups[$key]['qty']}}</td>
+                                                    <td>{{$groups[$key]['satuan']}}</td>
+                                                    <td style="text-align: center;">{{'Rp. '.number_format($groups[$key]['price_total'],0,",",".")}}</td>
+                                                    <td style="text-align: center;">{{'Rp. '.number_format($groups[$key]['price_total']-$groups[$key]['capital_price_total'],0,",",".")}}</td>
+                                                </tr>
                                                 @php
-                                                    $key = $details->product_id;
-                                                    if (!array_key_exists($key, $groups)) {
-                                                        $groups[$key] = array(
-                                                            'id' => $details->transaction_id,
-                                                            'name' => $details->Product->name,
-                                                            'qty' => $details->qty,
-                                                            'price' => $details->price*$details->qty,
-                                                        );
-                                                    } else {
-                                                        $groups[$key]['qty'] = $groups[$key]['qty'] + $details->qty;
-                                                        $groups[$key]['price'] = $groups[$key]['price'] + ($details->price*$details->qty);
-                                                    }
+                                                    $totalpenjualanmodal += $groups[$key]['capital_price_total'];
                                                 @endphp
                                             @endforeach
-                                        @endforeach
-
-                                        @foreach ($groups as $key => $value)
+                                        </tbody>
+                                        <tfoot>
                                             <tr>
-                                                <td>{{$key}}</td>
-                                                <td>{{$groups[$key]['name']}}</td>
-                                                <td>{{$groups[$key]['price']}}</td>
-                                                <td>{{$groups[$key]['qty']}}</td>
+                                                <td colspan="6"><b>TOTAL PENJUALAN BULAN INI</b></td>
+                                                <td style="text-align: center;">{{'Rp. '.number_format($totaltransactions,0,",",".")}}</td>
+                                                <td></td>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                            <tr>
+                                                <td colspan="7"><b>TOTAL KEUNTUNGAN BULAN INI</b></td>
+                                                <td style="text-align: center;">{{'Rp. '.number_format($totaltransactions-$totalpenjualanmodal,0,",",".")}}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <button wire:click="printSellings()">test</button>
+                                </div>
                             </div>
                         </div>
                     </div>

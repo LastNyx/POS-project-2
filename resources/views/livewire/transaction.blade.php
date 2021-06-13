@@ -196,9 +196,58 @@
                                                                         @endphp)" class="btn btn-success btn-block">Selesai</button>
                         </div>
                     </form>
+                    {{$LastSavedID}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class ="row" style="margin-top: 15px;">
+            <div class="col">
+                <div class="card" style="width: 272px; background: white; padding: 0px; margin: 0 auto; text-align: center;">
+                    <div class="card-body">
+                        <h2 style="padding: 0px;margin: 0;">SUMBER JAYA</h2>
+                        <p>Jl.sekiansekiansekian No.Sekian<br>No.telp 11111111</p>
+                        <div class="d-flex justify-content-between">
+                            <p>----------------------------------------------</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p></p>
+                            <p>Transaksi : 16</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p>----------------------------------------------</p>
+                        </div>
+                        @foreach ($details as $index => $detail)
+                            @if($detail->transaction_id == 15)
+                            <div class="d-flex justify-content-between">
+                                <p>{{$detail->Product->name}}</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>{{number_format($detail->qty,1,)}} {{ $detail->Product->unitlevel}}&nbsp;&nbsp;x {{$detail->price}}</p>
+                                <p>&nbsp;&nbsp;{{$detail->price * $detail->qty}}</p>
+                                @php
+                                    $total += $detail->price * $detail->qty;
+                                @endphp
+                            </div>
+                            @endif
+                        @endforeach
+
+                        <div class="d-flex justify-content-between">
+                            <p>----------------------------------------------</p>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <p>Total : {{$total}}</p>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <p>Tunai : {{$pay}}</p>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <p>Kembali : {{$pay-$total}}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-    </div>
 </div>

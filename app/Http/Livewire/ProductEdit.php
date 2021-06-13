@@ -10,7 +10,6 @@ class ProductEdit extends Component
 
     public $item_id,$codeitem,$name,$unitlevel,$price,$capital_price,$stock;
     public $updateMode = false;
-    public $stockMode = false;
 
     protected $listeners = [
         'getProducts' => 'showProduct'
@@ -28,7 +27,6 @@ class ProductEdit extends Component
         $this->unitlevel =$products['unitlevel'];
         $this->price = $products['price'];
         $this->capital_price = $products['capital_price'];
-        $this->stock = $products['stock'];
     }
 
     private function resetInputFields(){
@@ -37,7 +35,6 @@ class ProductEdit extends Component
         $this->unitlevel ='';
         $this->price = '';
         $this->capital_price = '';
-        $this->stock = '';
     }
 
     public function cancel()
@@ -55,7 +52,6 @@ class ProductEdit extends Component
             'unitlevel' => 'required',
             'price' => 'required',
             'capital_price' => 'required',
-            'stock'=>'required',
         ]);
 
         $products = ProductModel::find($this->item_id);
@@ -65,7 +61,6 @@ class ProductEdit extends Component
             'unitlevel' => $this->unitlevel,
             'price' => $this->price,
             'capital_price' => $this->capital_price,
-            'stock' => $this->stock,
         ]);
 
         $this->resetInputFields();
