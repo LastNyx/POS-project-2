@@ -1,5 +1,5 @@
 <div>
-    <div class="row">
+    <div class="row" id="noprint">
         <div class ="col-md-8" >
             <div class ="card">
                 <div class="card-body">
@@ -202,7 +202,9 @@
         </div>
     </div>
 
-        <div class ="row" style="margin-top: 15px;">
+<button wire:click.prevent="print()" id="noprint"> yoo</button>
+
+        <div class ="row" style="margin-top: 15px;" id="print">
             <div class="col">
                 <div class="card" style="width: 272px; background: white; padding: 0px; margin: 0 auto; text-align: center;">
                     <div class="card-body">

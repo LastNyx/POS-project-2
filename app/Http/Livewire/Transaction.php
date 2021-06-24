@@ -116,4 +116,8 @@ class Transaction extends Component
         $details->delete();
     }
 
+    public function print(){
+        $this->dispatchBrowserEvent('printSellings');
+    }
+
 }
