@@ -114,7 +114,7 @@
                                     <table class="table table-bordered">
                                         <thead>
                                         <tr style="text-align: center;">
-                                            <th scope="col">Id_barang</th>
+                                            <th scope="col">No</th>
                                             <th scope="col">Nama Barang</th>
                                             <th scope="col">Harga Modal</th>
                                             <th scope="col">Harga Jual</th>

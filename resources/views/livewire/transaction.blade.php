@@ -221,7 +221,7 @@
                             <p>----------------------------------------------</p>
                         </div>
                         @foreach ($details as $index => $detail)
-                            @if($detail->transaction_id == 15)
+                            @if($detail->transaction_id == 1)
                             <div class="d-flex justify-content-between">
                                 <p>{{$detail->Product->name}}</p>
                             </div>

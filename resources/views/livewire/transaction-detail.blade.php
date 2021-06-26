@@ -33,8 +33,8 @@
                                         overflow: hidden;
                                         text-overflow: ellipsis; max-width: 12ch;">{{$detail->Product->name}}</td>
                                     <td>{{$detail->Product->unitlevel}}</td>
-                                    <td wire:click="editqty({{$detail->id}})" style="cursor: pointer;">{{$detail->qty}}</td>
-                                    <td wire:click="editprice({{$detail->id}})" style="cursor: pointer;">{{'Rp. '.number_format($detail->price,0,",",".")}}</td>
+                                    <td>{{$detail->qty}}</td>
+                                    <td>{{'Rp. '.number_format($detail->price,0,",",".")}}</td>
                                     <td style="display:none;">{{$detail->Product->id}}</td>
                                     <td>{{'Rp. '.number_format($detail->price * $detail->qty,0,",",".")}}</td>
                                     @php
