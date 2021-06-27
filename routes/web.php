@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Product;
 use App\Http\Livewire\Transaction;
 use App\Http\Livewire\Dashboard;
+use App\Http\Controllers\StrukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,5 @@ Route::group(['middleware'=> ['auth']], function () {
     Route::get('/products', Product::class);
     Route::get('/', Dashboard::class);
     Route::get('/transaction',Transaction::class);
+    Route::get('/pdf', [StrukController::class, 'createPDF']);
 });
