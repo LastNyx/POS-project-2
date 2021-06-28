@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Livewire\Component;
+use App\Models\transaction as TransactionModel;
 use Codedge\Fpdf\Fpdf\Fpdf;
 
 class StrukController extends Controller

@@ -196,7 +196,6 @@
                                                                         @endphp)" class="btn btn-success btn-block">Selesai</button>
                         </div>
                     </form>
-                    {{$LastSavedID}}
                 </div>
             </div>
         </div>
@@ -215,13 +214,13 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <p></p>
-                            <p>Transaksi : 16</p>
+                            <p>Transaksi : {{$LastSavedID}}</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p>----------------------------------------------</p>
                         </div>
                         @foreach ($details as $index => $detail)
-                            @if($detail->transaction_id == 1)
+                            @if($detail->transaction_id == $LastSavedID)
                             <div class="d-flex justify-content-between">
                                 <p>{{$detail->Product->name}}</p>
                             </div>
@@ -242,10 +241,10 @@
                             <p>Total : {{$total}}</p>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <p>Tunai : {{$pay}}</p>
+                            <p>Tunai : {{$LastPayment}}</p>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <p>Kembali : {{$pay-$total}}</p>
+                            <p>Kembali : {{$LastPayment-$total}}</p>
                         </div>
                     </div>
                 </div>

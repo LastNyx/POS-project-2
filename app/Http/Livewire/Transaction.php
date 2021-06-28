@@ -13,7 +13,7 @@ class Transaction extends Component
     public $item_id,$codeitem,$name,$unitlevel,$price,$detail_id,$qty;
     public $pay;
     public $TransactionError;
-    public $LastSavedID;
+    public $LastSavedID,$LastPayment;
     public $search;
     public $updateMode = false;
 
@@ -108,6 +108,7 @@ class Transaction extends Component
         detailsModel::where('transaction_id', '=', 0)->update(['transaction_id'=> $transaction['id']]);
 
         $this->LastSavedID = $transaction['id'];
+        $this->LastPayment = $transaction['pay'];
     }
 
 
