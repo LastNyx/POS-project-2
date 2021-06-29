@@ -204,20 +204,20 @@
 <button wire:click.prevent="print()" id="noprint"> yoo</button>
 
         <div class ="row" style="margin-top: 15px;" id="print">
-            <div class="col">
-                <div class="card" style="width: 272px; background: white; padding: 0px; margin: 0 auto; text-align: center;">
+            <div class="col-1">
+                <div class="card" style="width: 303px; background: white; padding: 0px; margin: 0 auto; text-align: center;">
                     <div class="card-body">
                         <h2 style="padding: 0px;margin: 0;">SUMBER JAYA</h2>
                         <p>Jl.sekiansekiansekian No.Sekian<br>No.telp 11111111</p>
                         <div class="d-flex justify-content-between">
-                            <p>----------------------------------------------</p>
+                            <p>----------------------------------------------------</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p></p>
                             <p>Transaksi : {{$LastSavedID}}</p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p>----------------------------------------------</p>
+                            <p>----------------------------------------------------</p>
                         </div>
                         @foreach ($details as $index => $detail)
                             @if($detail->transaction_id == $LastSavedID)
@@ -235,7 +235,7 @@
                         @endforeach
 
                         <div class="d-flex justify-content-between">
-                            <p>----------------------------------------------</p>
+                            <p>----------------------------------------------------</p>
                         </div>
                         <div class="d-flex justify-content-end">
                             <p>Total : {{$total}}</p>
