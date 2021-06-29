@@ -203,9 +203,9 @@
 
 <button wire:click.prevent="print()" id="noprint"> yoo</button>
 
-        <div class ="row" style="margin-top: 15px;" id="print">
+        <div class ="row" style="margin-top: 15px;">
             <div class="col-1">
-                <div class="card" style="width: 303px; background: white; padding: 0px; margin: 0 auto; text-align: center;">
+                <div class="card" style="width: 303px; background: white; padding: 0px; margin: 0 auto; text-align: center;" id="print" >
                     <div class="card-body">
                         <h2 style="padding: 0px;margin: 0;">SUMBER JAYA</h2>
                         <p>Jl.sekiansekiansekian No.Sekian<br>No.telp 11111111</p>
