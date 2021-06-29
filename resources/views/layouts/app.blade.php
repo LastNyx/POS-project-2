@@ -24,7 +24,7 @@
         p{
             padding: 0px;
             margin: 0;
-            font-size:12px;
+            font-size:15px;
             font-family: Arial, Helvetica, sans-serif;
         }
     </style>

@@ -205,9 +205,9 @@
 
         <div class ="row" style="margin-top: 15px;">
             <div class="col-1">
-                <div class="card" style="width: 303px; background: white; padding: 0px; margin: 0 auto; text-align: center;" id="print" >
+                <div class="card" style="width: 375px; background: white; padding: 0px; margin: 0 auto; text-align: center;" id="print" >
                     <div class="card-body">
-                        <h2 style="padding: 0px;margin: 0; font-size:21px;
+                        <h2 style="padding: 0px;margin: 0; font-size:26px;
                         font-family: Arial, Helvetica, sans-serif;">SUMBER JAYA</h2>
                         <p>Jl.sekiansekiansekian No.Sekian<br>No.telp 11111111</p>
                         <div class="d-flex justify-content-between">
