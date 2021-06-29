@@ -200,22 +200,23 @@
             </div>
         </div>
     </div>
-
-<button wire:click.prevent="print()" id="noprint"> yoo</button>
+@php
+    $timenow = Carbon\Carbon::now();
+@endphp
 
         <div class ="row" style="margin-top: 15px;">
             <div class="col-1">
-                <div class="card" style="width: 390px; background: white; padding: 0px; margin: 0 auto; text-align: center;" id="print" >
+                <div class="card" style="width: 390px; background: white; padding: 0px; margin: 0 auto; text-align: center; visibility: hidden;" id="print" >
                     <div class="card-body">
                         <h2 style="padding: 0px;margin: 0; font-size:29px;
                         font-family: Arial, Helvetica, sans-serif;">SUMBER JAYA</h2>
-                        <p>Jl.sekiansekiansekian No.Sekian<br>No.telp 11111111</p>
+                        <p>Jalan Raya Sungai Kakap, Parit Gadoh<br>No.Telp 085386028128 / 089697897689</p>
                         <div class="d-flex justify-content-between">
                             <p>-------------------------------------------------------------</p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <p></p>
-                            <p>Transaksi : {{$LastSavedID}}</p>
+                            <p>{{$timenow}}</p>
+                            <p>Transaksi : {{str_pad($LastSavedID, 5, "0", STR_PAD_LEFT)}}</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p>-------------------------------------------------------------</p>
@@ -226,8 +227,8 @@
                                 <p>{{$detail->Product->name}}</p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p>{{number_format($detail->qty,1,)}} {{ $detail->Product->unitlevel}}&nbsp;&nbsp;x {{$detail->price}}</p>
-                                <p>&nbsp;&nbsp;{{$detail->price * $detail->qty}}</p>
+                                <p>{{number_format($detail->qty,1,)}} {{ $detail->Product->unitlevel}}&nbsp;&nbsp;x {{'Rp. '.number_format($detail->price,0,",",".")}}</p>
+                                <p>&nbsp;&nbsp;{{'Rp. '.number_format($detail->price * $detail->qty,0,",",".")}}</p>
                                 @php
                                     $total += $detail->price * $detail->qty;
                                 @endphp
@@ -239,17 +240,76 @@
                             <p>-------------------------------------------------------------</p>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <p>Total : {{$total}}</p>
+                            <p>Total : {{'Rp. '.number_format($total,0,",",".")}}</p>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <p>Tunai : {{$LastPayment}}</p>
+                            <p>Tunai : {{'Rp. '.number_format($LastPayment,0,",",".")}}</p>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <p>Kembali : {{$LastPayment-$total}}</p>
+                            <p>Kembali : {{'Rp. '.number_format($LastPayment-$total,0,",",".")}}</p>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p>-------------------------------------------------------------</p>
+                        </div>
+                        <div>
+                            <p>Terima Kasih Sudah Berbelanja <br> di Toko Kami.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+            <div class ="row" style="margin-top: 15px;">
+                <div class="col-1">
+                    <div class="card" style="width: 390px; background: white; padding: 0px; margin: 0 auto; text-align: center; visibility: hidden; " id="printcopy" >
+                        <div class="card-body">
+                            <h2 style="padding: 0px;margin: 0; font-size:29px;
+                            font-family: Arial, Helvetica, sans-serif;">SUMBER JAYA</h2>
+                            <p>Jalan Raya Sungai Kakap, Parit Gadoh<br>No.Telp 085386028128 / 089697897689<br>*COPY*<br></p>
+                            <div class="d-flex justify-content-between">
+                                <p>-------------------------------------------------------------</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>{{$timenow}}</p>
+                                <p>Transaksi : {{str_pad($LastSavedID, 5, "0", STR_PAD_LEFT)}}</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>-------------------------------------------------------------</p>
+                            </div>
+                            @foreach ($details as $index => $detail)
+                                @if($detail->transaction_id == $LastSavedID)
+                                <div class="d-flex justify-content-between">
+                                    <p>{{$detail->Product->name}}</p>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <p>{{number_format($detail->qty,1,)}} {{ $detail->Product->unitlevel}}&nbsp;&nbsp;x {{'Rp. '.number_format($detail->price,0,",",".")}}</p>
+                                    <p>&nbsp;&nbsp;{{'Rp. '.number_format($detail->price * $detail->qty,0,",",".")}}</p>
+
+                                </div>
+                                @endif
+                            @endforeach
+
+                            <div class="d-flex justify-content-between">
+                                <p>-------------------------------------------------------------</p>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <p>Total : {{'Rp. '.number_format($total,0,",",".")}}</p>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <p>Tunai : {{'Rp. '.number_format($LastPayment,0,",",".")}}</p>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <p>Kembali : {{'Rp. '.number_format($LastPayment-$total,0,",",".")}}</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p>-------------------------------------------------------------</p>
+                            </div>
+                            <div>
+                                <p>Terima Kasih Sudah Berbelanja <br> di Toko Kami.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 </div>

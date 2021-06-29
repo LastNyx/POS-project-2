@@ -109,6 +109,8 @@ class Transaction extends Component
 
         $this->LastSavedID = $transaction['id'];
         $this->LastPayment = $transaction['pay'];
+
+        $this->dispatchBrowserEvent('printSellings');
     }
 
 

@@ -53,7 +53,5 @@ class Dashboard extends Component
         $this->transaction_id = $id;
     }
 
-    public function printSellings(){
-        $this->dispatchBrowserEvent('printSellings');
-    }
+
 }

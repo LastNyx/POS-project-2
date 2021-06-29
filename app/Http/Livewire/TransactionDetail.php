@@ -33,4 +33,8 @@ class TransactionDetail extends Component
         $this->transaction_id = 0;
         $this->emit('TransactionIdChange',$this->transaction_id);
     }
+
+    public function print(){
+        $this->dispatchBrowserEvent('printSellings');
+    }
 }

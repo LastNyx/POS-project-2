@@ -129,13 +129,12 @@
             $("#ModalDelete").modal('hide');
         })
 
-        function myFunction()
-        {
-            window.print();
-        }
-
         window.addEventListener('printSellings', event => {
+            $("#print").css("visibility","visible");
+            $("#printcopy").css("visibility","visible");
             window.print();
+            $("#print").css("visibility","hidden");
+            $("#printcopy").css("visibility","visible");
         })
 
         </script>
