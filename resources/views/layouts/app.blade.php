@@ -31,7 +31,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-body" >
+        <nav class="navbar navbar-expand-lg navbar-light bg-body" id="noprint">
             <div class="container-fluid"  style="background-color:cadetblue; margin: 5px; padding-left: 20px;">
                 <b> <a class="navbar-brand" href="\">Sumber Jaya</a> </b>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
