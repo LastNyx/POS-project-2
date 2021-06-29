@@ -24,7 +24,8 @@
         p{
             padding: 0px;
             margin: 0;
-            font-size:11px;
+            font-size:12px;
+            font-family: Arial, Helvetica, sans-serif;
         }
     </style>
     @livewireStyles
