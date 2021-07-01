@@ -123,8 +123,8 @@
             <div class="input-group flex-nowrap;" style="margin-top: 15px;">
                 <span class="input-group-text" id="addon-wrapping">Harga</span>
                 <input wire:model="price" type="text" class="form-control" id="setfocus2">
-                @error('name') <small class="text-danger">{{$message}}</small>@enderror
             </div>
+            <div><small class="text-danger">{{$TransactionError2}}</small></div>
         </form>
         </div>
         <div class="modal-footer">
@@ -188,8 +188,8 @@
                             <div class="input-group" style="margin-top: 15px;">
                                 <span class="input-group-text" id="addon-wrapping">Bayar</span>
                                 <input wire:model="pay" type="number" class="form-control">
-                                @error('pay') <small class="text-danger">{{$message}}</small>@enderror
                             </div>
+                            <div>@error('pay') <small class="text-danger">{{$message}}</small>@enderror</div>
                         <div class="input-group flex-nowrap;" style="margin-top: 15px;">
                             <button wire:click.prevent="saveTransaction(@php
                                                                         echo $total;
@@ -258,58 +258,5 @@
                 </div>
             </div>
         </div>
-
-            <div class ="row" style="margin-top: 15px;">
-                <div class="col-1">
-                    <div class="card" style="width: 390px; background: white; padding: 0px; margin: 0 auto; text-align: center; visibility: hidden; " id="printcopy" >
-                        <div class="card-body">
-                            <h2 style="padding: 0px;margin: 0; font-size:29px;
-                            font-family: Arial, Helvetica, sans-serif;">SUMBER JAYA</h2>
-                            <p>Jalan Raya Sungai Kakap, Parit Gadoh<br>No.Telp 085386028128 / 089697897689<br>*COPY*<br></p>
-                            <div class="d-flex justify-content-between">
-                                <p>-------------------------------------------------------------</p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p>{{$timenow}}</p>
-                                <p>Transaksi : {{str_pad($LastSavedID, 5, "0", STR_PAD_LEFT)}}</p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p>-------------------------------------------------------------</p>
-                            </div>
-                            @foreach ($details as $index => $detail)
-                                @if($detail->transaction_id == $LastSavedID)
-                                <div class="d-flex justify-content-between">
-                                    <p>{{$detail->Product->name}}</p>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <p>{{number_format($detail->qty,1,)}} {{ $detail->Product->unitlevel}}&nbsp;&nbsp;x {{'Rp. '.number_format($detail->price,0,",",".")}}</p>
-                                    <p>&nbsp;&nbsp;{{'Rp. '.number_format($detail->price * $detail->qty,0,",",".")}}</p>
-
-                                </div>
-                                @endif
-                            @endforeach
-
-                            <div class="d-flex justify-content-between">
-                                <p>-------------------------------------------------------------</p>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <p>Total : {{'Rp. '.number_format($total,0,",",".")}}</p>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <p>Tunai : {{'Rp. '.number_format($LastPayment,0,",",".")}}</p>
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <p>Kembali : {{'Rp. '.number_format($LastPayment-$total,0,",",".")}}</p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p>-------------------------------------------------------------</p>
-                            </div>
-                            <div>
-                                <p>Terima Kasih Sudah Berbelanja <br> di Toko Kami.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 </div>

@@ -10,9 +10,9 @@ use App\Models\Details as detailsModel;
 class Transaction extends Component
 {
 
-    public $item_id,$codeitem,$name,$unitlevel,$price,$detail_id,$qty;
+    public $item_id,$codeitem,$name,$unitlevel,$price,$detail_id,$qty,$capital_price,$product_id;
     public $pay;
-    public $TransactionError;
+    public $TransactionError,$TransactionError2;
     public $LastSavedID,$LastPayment;
     public $search;
     public $updateMode = false;
@@ -78,8 +78,10 @@ class Transaction extends Component
     public function editprice($id){
 
         $details = detailsModel::find($id);
+        $products = productModel::find($details['product_id']);
         $this->detail_id = $details['id'];
         $this->price = $details['price'];
+        $this->capital_price = $products['capital_price'];
         $this->dispatchBrowserEvent('openModalPrice');
 
 
@@ -87,17 +89,25 @@ class Transaction extends Component
 
     public function confirmEditPrice($id){
         $details = detailsModel::find($id);
-        $details->update([
-            'price' => $this->price
-        ]);
-        $this->dispatchBrowserEvent('closeModalPrice');
+        $products = productModel::find($details['product_id']);
+        if($this->price >= $products['capital_price']){
+            $details->update([
+                'price' => $this->price
+            ]);
+            $this->dispatchBrowserEvent('closeModalPrice');
+        }else{
+            $this->TransactionError2 = 'Harga Terlalu kecil dari pada Modal.';
+        }
+
+
     }
 
     public function saveTransaction($total){
 
         $this -> validate([
             'pay' => 'required',
-        ]);
+        ],
+        [ 'pay.required' => 'Jangan Lupa isi pembayaran.']);
 
         $transaction = TransactionModel::create([
             'total' => $total,
