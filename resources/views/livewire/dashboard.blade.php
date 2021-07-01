@@ -122,12 +122,14 @@
                                                                 @foreach ($transactionAll as $index => $transaction)
                                                                     @foreach ($transaction->details as $details)
                                                                         @php
+                                                                            $products = App\Models\product::find($details->product_id);
                                                                             $key = $details->product_id;
                                                                             if (!array_key_exists($key, $groups)) {
                                                                                 $groups[$key] = array(
                                                                                     'id' => $details->transaction_id,
                                                                                     'name' => $details->Product->name,
                                                                                     'qty' => $details->qty,
+                                                                                    'actual_price' => $products->price,
                                                                                     'price' => $details->price,
                                                                                     'price_total' => $details->price*$details->qty,
                                                                                     'capital_price' => $details->Product->capital_price,
@@ -158,7 +160,7 @@
                                                                             overflow: hidden;
                                                                             text-overflow: ellipsis; max-width: 20ch;">{{$groups[$key]['name']}}</td>
                                                                         <td>{{'Rp. '.number_format($groups[$key]['capital_price'],0,",",".")}}</td>
-                                                                        <td>{{'Rp. '.number_format($groups[$key]['price'],0,",",".")}}</td>
+                                                                        <td>{{'Rp. '.number_format($groups[$key]['actual_price'],0,",",".")}}</td>
                                                                         <td>{{$groups[$key]['qty']}}</td>
                                                                         <td>{{$groups[$key]['satuan']}}</td>
                                                                         <td style="text-align: center;">{{'Rp. '.number_format($groups[$key]['price_total'],0,",",".")}}</td>
