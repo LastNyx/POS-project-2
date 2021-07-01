@@ -173,7 +173,9 @@
                                                 <?php if($count == 4) break; ?>
                                                     <tbody>
                                                         <tr wire:click="showProduct({{ $product->id }})" style="cursor: pointer;">
-                                                            <td>{{$product->codeitem}}</td>
+                                                            <td data-toggle="tooltip" title="{{$product->codeitem}}" style="white-space: nowrap;
+                                                                overflow: hidden;
+                                                                text-overflow: ellipsis; max-width: 13ch;">{{$product->codeitem}}</td>
                                                             <td data-toggle="tooltip" title="{{$product->name}}" style="white-space: nowrap;
                                                                 overflow: hidden;
                                                                 text-overflow: ellipsis; max-width: 20ch;">{{$product->name}}</td>
