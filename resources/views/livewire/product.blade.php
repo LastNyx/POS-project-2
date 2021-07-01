@@ -38,7 +38,7 @@
         <div class ="col-md-8" >
             <div class ="card">
                 <div class="card-body ">
-                    <h2 class="font-weight-bold mb-3">List Produk</h2>
+                    <h2 class="font-weight-bold mb-3">Daftar Barang</h2>
                     <div class="input-group flex-nowrap;" style="margin-top: 10px; margin-bottom: 15px;">
                         <span class="input-group-text" id="addon-wrapping"> Cari</span>
                         <input wire:model="search" type="search" class="form-control" placeholder="Nama Barang/Kode Barang">
@@ -46,18 +46,18 @@
                     <table class="table table-striped table-bordered ">
                         <thead>
                             <tr>
-                                <th scope="col">Kode</th>
-                                <th scope="col">Nama</th>
+                                <th scope="col" style="width: 2.5cm">Kode</th>
+                                <th scope="col" style="width: 6cm">Nama</th>
                                 <th scope="col">Satuan</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">Modal</th>
-                                <th scope="col" style="text-align: center;" colspan="2">Action</th>
+                                <th scope="col" style="text-align: center; min-width:1cm" colspan="2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($products as $index => $product)
                             <tr>
-                                <td style="white-space: nowrap;
+                                <td data-toggle="tooltip" title="{{$product->codeitem}}" style="white-space: nowrap;
                                 overflow: hidden;
                                 text-overflow: ellipsis; max-width: 2ch;">{{$product->codeitem}}</td>
                                 <td data-toggle="tooltip" title="{{$product->name}}" style="white-space: nowrap;
