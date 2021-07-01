@@ -32,7 +32,7 @@ class Product extends Component
         return view('livewire.product', [
             'products' =>$products,
             'products' =>productModel::where('name', 'like', '%'.$this->search.'%')
-            ->orwhere('codeitem', 'like', '%'.$this->search.'%')->paginate(5),
+            ->orwhere('codeitem', 'like', '%'.$this->search.'%')->paginate(7),
         ]);
     }
 
