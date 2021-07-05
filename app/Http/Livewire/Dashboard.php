@@ -16,7 +16,7 @@ class Dashboard extends Component
 
 
     public $transaction_id = 0;
-    public $month,$searchTransaction;
+    public $month,$searchTransaction,$products;
 
     protected $listeners = [
         'TransactionIdChange'
