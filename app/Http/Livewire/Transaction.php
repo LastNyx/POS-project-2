@@ -12,7 +12,7 @@ class Transaction extends Component
 
     public $item_id,$codeitem,$name,$unitlevel,$price,$detail_id,$qty,$capital_price,$product_id;
     public $pay;
-    public $TransactionError,$TransactionError2;
+    public $TransactionError,$TransactionError2,$TransactionError3;
     public $LastSavedID,$LastPayment;
     public $search;
     public $updateMode = false;
@@ -95,6 +95,7 @@ class Transaction extends Component
                 'price' => $this->price
             ]);
             $this->dispatchBrowserEvent('closeModalPrice');
+            $this->TransactionError2 = '';
         }else{
             $this->TransactionError2 = 'Harga Terlalu kecil dari pada Modal.';
         }
@@ -109,11 +110,11 @@ class Transaction extends Component
         ],
         [ 'pay.required' => 'Jangan Lupa isi pembayaran.']);
 
+        if($this->pay >= $total){
         $transaction = TransactionModel::create([
             'total' => $total,
             'pay'=> $this->pay,
         ]);
-
         $this->pay = 0;
         detailsModel::where('transaction_id', '=', 0)->update(['transaction_id'=> $transaction['id']]);
 
@@ -121,6 +122,13 @@ class Transaction extends Component
         $this->LastPayment = $transaction['pay'];
 
         $this->dispatchBrowserEvent('printSellings');
+
+        $this->TransactionError3 = '';
+        }else{
+            $this->TransactionError3 = 'Pembayaran kurang';
+        }
+
+
     }
 
 

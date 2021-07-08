@@ -190,6 +190,7 @@
                                 <input wire:model="pay" type="number" class="form-control">
                             </div>
                             <div>@error('pay') <small class="text-danger">{{$message}}</small>@enderror</div>
+                            <div><small class="text-danger">{{$TransactionError3}}</small></div>
                         <div class="input-group flex-nowrap;" style="margin-top: 15px;">
                             <button wire:click.prevent="saveTransaction(@php
                                                                         echo $total;
