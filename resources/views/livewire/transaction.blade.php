@@ -30,7 +30,7 @@
                                     </td>
                                     <td style="white-space: nowrap;
                                                 overflow: hidden;
-                                                text-overflow: ellipsis; max-width: 2ch;">{{$detail->Product->codeitem}}</td>
+                                                text-overflow: ellipsis; max-width: 2ch;">{{$detail->product_id}}</td>
                                     <td data-toggle="tooltip" title="{{$detail->Product->name}}" style="white-space: nowrap;
                                         overflow: hidden;
                                         text-overflow: ellipsis; max-width: 12ch;">{{$detail->Product->name}}</td>
@@ -172,7 +172,7 @@
                                             @foreach ($products as $product)
                                                 <?php if($count == 4) break; ?>
                                                     <tbody>
-                                                        <tr wire:click="showProduct({{ $product->id }})" style="cursor: pointer;">
+                                                        <tr wire:click="showProduct('{{ $product->codeitem }}')" style="cursor: pointer;">
                                                             <td>{{$product->codeitem}}</td>
                                                             <td data-toggle="tooltip" title="{{$product->name}}" style="white-space: nowrap;
                                                                 overflow: hidden;

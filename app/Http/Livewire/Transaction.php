@@ -31,7 +31,6 @@ class Transaction extends Component
 
     public function showProduct($id){
         $products = productModel::find($id);
-        $this->item_id = $products['id'];
         $this->codeitem = $products['codeitem'];
         $this->name = $products['name'];
         $this->unitlevel =$products['unitlevel'];
@@ -41,7 +40,7 @@ class Transaction extends Component
 
         try{
             $details = detailsModel::Create([
-                'product_id' => $this->item_id,
+                'product_id' => $this->codeitem,
                 'price' => $this->price,
 
             ]);
@@ -60,7 +59,7 @@ class Transaction extends Component
     public function editqty($id){
 
         $details = detailsModel::find($id);
-        $this->detail_id = $details['id'];
+        $this->detail_id = $details['codeitem'];
         $this->qty = $details['qty'];
         $this->dispatchBrowserEvent('openModal');
 
@@ -79,7 +78,7 @@ class Transaction extends Component
 
         $details = detailsModel::find($id);
         $products = productModel::find($details['product_id']);
-        $this->detail_id = $details['id'];
+        $this->detail_id = $details['codeitem'];
         $this->price = $details['price'];
         $this->capital_price = $products['capital_price'];
         $this->dispatchBrowserEvent('openModalPrice');

@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $table = 'product';
+    protected $primaryKey = 'codeitem';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     protected $guarded = [];
     protected $attributes = [
         'price' => 1,

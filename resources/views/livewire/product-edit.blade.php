@@ -1,8 +1,7 @@
 <form>
-    <input wire:model="item_id" type="hidden" class="form-control">
     <div class="input-group flex-nowrap">
         <span class="input-group-text" id="addon-wrapping">kode Barang</span>
-        <input wire:model="codeitem" type="text" class="form-control">
+        <input wire:model="codeitem" type="text" class="form-control" readonly>
         @error('codeitem') <small class="text-danger">{{$message}}</small>@enderror
     </div>
     <div class="input-group flex-nowrap;" style="margin-top: 15px;">
