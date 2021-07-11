@@ -21,7 +21,6 @@ class ProductEdit extends Component
     }
 
     public function showProduct($products){
-        $this->item_id = $products['id'];
         $this->codeitem = $products['codeitem'];
         $this->name = $products['name'];
         $this->unitlevel =$products['unitlevel'];
@@ -46,7 +45,6 @@ class ProductEdit extends Component
     public function update()
     {
         $this -> validate([
-            'item_id' => 'required',
             'codeitem' => 'required',
             'name' => 'required',
             'unitlevel' => 'required',
@@ -54,7 +52,7 @@ class ProductEdit extends Component
             'capital_price' => 'required',
         ]);
 
-        $products = ProductModel::find($this->item_id);
+        $products = ProductModel::find($this->codeitem);
         $products->update([
             'codeitem' => $this->codeitem,
             'name' => $this->name,

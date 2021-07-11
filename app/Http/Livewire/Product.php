@@ -53,7 +53,7 @@ class Product extends Component
 
     public function deleteItems($id){
         $product = productModel::find($id);
-        $this->product_id = $product['id'];
+        $this->product_id = $product['codeitem'];
         $this->dispatchBrowserEvent('openModalDelete');
 
 

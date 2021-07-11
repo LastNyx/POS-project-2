@@ -12,7 +12,7 @@ class Transaction extends Component
 
     public $item_id,$codeitem,$name,$unitlevel,$price,$detail_id,$qty,$capital_price,$product_id;
     public $pay;
-    public $TransactionError,$TransactionError2;
+    public $TransactionError,$TransactionError2,$TransactionError3;
     public $LastSavedID,$LastPayment;
     public $search;
     public $updateMode = false;
@@ -31,7 +31,6 @@ class Transaction extends Component
 
     public function showProduct($id){
         $products = productModel::find($id);
-        $this->item_id = $products['id'];
         $this->codeitem = $products['codeitem'];
         $this->name = $products['name'];
         $this->unitlevel =$products['unitlevel'];
@@ -41,7 +40,7 @@ class Transaction extends Component
 
         try{
             $details = detailsModel::Create([
-                'product_id' => $this->item_id,
+                'product_id' => $this->codeitem,
                 'price' => $this->price,
 
             ]);
@@ -60,7 +59,7 @@ class Transaction extends Component
     public function editqty($id){
 
         $details = detailsModel::find($id);
-        $this->detail_id = $details['id'];
+        $this->detail_id = $details['codeitem'];
         $this->qty = $details['qty'];
         $this->dispatchBrowserEvent('openModal');
 
@@ -79,7 +78,7 @@ class Transaction extends Component
 
         $details = detailsModel::find($id);
         $products = productModel::find($details['product_id']);
-        $this->detail_id = $details['id'];
+        $this->detail_id = $details['codeitem'];
         $this->price = $details['price'];
         $this->capital_price = $products['capital_price'];
         $this->dispatchBrowserEvent('openModalPrice');
@@ -95,6 +94,7 @@ class Transaction extends Component
                 'price' => $this->price
             ]);
             $this->dispatchBrowserEvent('closeModalPrice');
+            $this->TransactionError2 = '';
         }else{
             $this->TransactionError2 = 'Harga Terlalu kecil dari pada Modal.';
         }
@@ -109,11 +109,11 @@ class Transaction extends Component
         ],
         [ 'pay.required' => 'Jangan Lupa isi pembayaran.']);
 
+        if($this->pay >= $total){
         $transaction = TransactionModel::create([
             'total' => $total,
             'pay'=> $this->pay,
         ]);
-
         $this->pay = 0;
         detailsModel::where('transaction_id', '=', 0)->update(['transaction_id'=> $transaction['id']]);
 
@@ -121,6 +121,13 @@ class Transaction extends Component
         $this->LastPayment = $transaction['pay'];
 
         $this->dispatchBrowserEvent('printSellings');
+
+        $this->TransactionError3 = '';
+        }else{
+            $this->TransactionError3 = 'Pembayaran kurang';
+        }
+
+
     }
 
 

@@ -28,7 +28,7 @@
         </form>
         </div>
         <div class="modal-footer">
-            <button wire:click="destroy({{ $product_id }})" class='btn btn-danger'>Hapus</button>
+            <button wire:click="destroy('{{ $product_id }}')" class='btn btn-danger'>Hapus</button>
         </div>
       </div>
     </div>
@@ -67,10 +67,10 @@
                                 <td>{{'Rp. '.number_format($product->price,0,",",".")}}</td>
                                 <td>{{'Rp. '.number_format($product->capital_price,0,",",".")}}</td>
                                 <td style="text-align:right">
-                                    <button wire:click="getProducts({{ $product->id }})" class='btn btn-info btn-sm'>Edit</button>
+                                    <button wire:click="getProducts('{{$product->codeitem }}')" class='btn btn-info btn-sm'>Edit</button>
                                 </td>
                                 <td style="text-align:left">
-                                    <button wire:click="deleteItems({{$product->id}})" class='btn btn-danger btn-sm'>Hapus</button>
+                                    <button wire:click="deleteItems('{{$product->codeitem}}')" class='btn btn-danger btn-sm'>Hapus</button>
                                 </td>
                             </tr>
                             @endforeach
