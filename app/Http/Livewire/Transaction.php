@@ -59,7 +59,7 @@ class Transaction extends Component
     public function editqty($id){
 
         $details = detailsModel::find($id);
-        $this->detail_id = $details['codeitem'];
+        $this->detail_id = $details['id'];
         $this->qty = $details['qty'];
         $this->dispatchBrowserEvent('openModal');
 
@@ -78,7 +78,7 @@ class Transaction extends Component
 
         $details = detailsModel::find($id);
         $products = productModel::find($details['product_id']);
-        $this->detail_id = $details['codeitem'];
+        $this->detail_id = $details['id'];
         $this->price = $details['price'];
         $this->capital_price = $products['capital_price'];
         $this->dispatchBrowserEvent('openModalPrice');
@@ -103,7 +103,7 @@ class Transaction extends Component
     }
 
     public function saveTransaction($total){
-
+        $this->TransactionError3 = '';
         $this -> validate([
             'pay' => 'required',
         ],
@@ -122,7 +122,7 @@ class Transaction extends Component
 
         $this->dispatchBrowserEvent('printSellings');
 
-        $this->TransactionError3 = '';
+
         }else{
             $this->TransactionError3 = 'Pembayaran kurang';
         }
@@ -134,6 +134,13 @@ class Transaction extends Component
     public function deleteDetail($id){
         $details = detailsModel::find($id);
         $details->delete();
+    }
+
+    public function deleteInit(){
+        $details = detailsModel::where('transaction_id', '=', 0);
+        if($details) {
+            $details->delete();
+        }
     }
 
     public function print(){

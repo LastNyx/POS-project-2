@@ -24,6 +24,7 @@
         <input wire:model="capital_price" type="number" class="form-control">
         @error('capital_price') <small class="text-danger">{{$message}}</small>@enderror
     </div>
+    <div><small class="text-danger">{{$errormessage}}</small></div>
     <div class="input-group flex-nowrap;" style="margin-top: 15px;">
         <button wire:click.prevent="store()" class="btn btn-primary btn-block">Submit</button>
     </div>

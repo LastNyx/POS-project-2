@@ -1,0 +1,1 @@
+start "D:\Kerja Praktek\POS-project" php artisan serve
