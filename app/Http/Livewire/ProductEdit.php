@@ -10,7 +10,6 @@ class ProductEdit extends Component
 
     public $item_id,$codeitem,$name,$unitlevel,$price,$capital_price,$stock;
     public $updateMode = false;
-    public $errormessage;
 
     protected $listeners = [
         'getProducts' => 'showProduct'
@@ -54,7 +53,6 @@ class ProductEdit extends Component
         ]);
 
         $products = ProductModel::find($this->codeitem);
-        if ($this->capital_price <= $this->price){
         $products->update([
             'codeitem' => $this->codeitem,
             'name' => $this->name,
@@ -66,10 +64,6 @@ class ProductEdit extends Component
         $this->resetInputFields();
 
         $this->emit('productUpdate');
-        $this->errormessage = '';
-        }else{
-            $this->errormessage = 'Harga Modal Lebih tinggi dari harga jual';
-        }
 
 
     }

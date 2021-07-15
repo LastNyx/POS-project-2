@@ -1,4 +1,4 @@
-<div wire:init="deleteInit">
+<div>
     <div class="row" id="noprint">
         <div class ="col-md-8" >
             <div class ="card">

@@ -24,7 +24,6 @@
         <input wire:model="capital_price" type="number" class="form-control">
         @error('capital_price') <small class="text-danger">{{$message}}</small>@enderror
     </div>
-    <div><small class="text-danger">{{$errormessage}}</small></div>
     <input wire:model="stock" type="hidden" class="form-control">
     <div class="input-group flex-nowrap;" style="margin-top: 15px;">
         <button wire:click.prevent="update()" class="btn btn-dark btn-block">Update</button>
