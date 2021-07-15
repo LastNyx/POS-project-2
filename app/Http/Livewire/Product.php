@@ -55,8 +55,6 @@ class Product extends Component
         $product = productModel::find($id);
         $this->product_id = $product['codeitem'];
         $this->dispatchBrowserEvent('openModalDelete');
-
-
     }
 
     public function destroy($id)

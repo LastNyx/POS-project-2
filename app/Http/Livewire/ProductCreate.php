@@ -9,6 +9,7 @@ class ProductCreate extends Component
 {
     public $item_id,$codeitem,$name,$unitlevel,$price,$capital_price,$stock;
     public $updateMode = false;
+    public $errormessage;
 
     public function render()
     {
@@ -34,18 +35,26 @@ class ProductCreate extends Component
             'capital_price' => 'required',
         ]);
 
-        $Products = ProductModel::Create([
-            'codeitem' => $this->codeitem,
-            'name' => $this->name,
-            'unitlevel' => $this->unitlevel,
-            'price' => $this->price,
-            'capital_price' => $this->capital_price,
-        ]);
+        if ($this->capital_price <= $this->price){
+            try{
+                $Products = ProductModel::Create([
+                    'codeitem' => $this->codeitem,
+                    'name' => $this->name,
+                    'unitlevel' => $this->unitlevel,
+                    'price' => $this->price,
+                    'capital_price' => $this->capital_price,
+                ]);
+                $this->emit('productStored', $Products);
 
+                $this->resetInputFields();
+                $this->errormessage = '';
+            } catch (\Illuminate\Database\QueryException $e){
+                $this->errormessage = 'Kode Barang sudah ada! Cek kembali Kode barang.';
+            };
+        }else{
+            $this->errormessage = 'Harga Modal Lebih tinggi dari harga jual';
+        }
 
-        $this->emit('productStored', $Products);
-
-        $this->resetInputFields();
     }
 
 }
