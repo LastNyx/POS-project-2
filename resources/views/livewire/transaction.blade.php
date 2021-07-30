@@ -12,7 +12,7 @@
                                 <th scope="col" style="text-align:center">Action</th>
                                 <th scope="col">Kode</th>
                                 <th scope="col">Nama</th>
-                                <th scope="col">qty</th>
+                                <th scope="col">Qty</th>
                                 <th scope="col">Satuan</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">Subtotal</th>
@@ -28,12 +28,12 @@
                                     <td style="text-align:center">
                                         <button wire:click="deleteDetail({{$detail->id}})" class='btn btn-danger btn-sm'>Hapus</button>
                                     </td>
-                                    <td style="white-space: nowrap;
+                                    <td data-toggle="tooltip" title="{{$detail->product_id}}" style="white-space: nowrap;
                                                 overflow: hidden;
                                                 text-overflow: ellipsis; max-width: 2ch;">{{$detail->Product->codeitem}}</td>
                                     <td data-toggle="tooltip" title="{{$detail->Product->name}}" style="white-space: nowrap;
                                         overflow: hidden;
-                                        text-overflow: ellipsis; max-width: 12ch;">{{$detail->Product->name}}</td>
+                                        text-overflow: ellipsis; max-width: 20ch;">{{$detail->Product->name}}</td>
                                     <td wire:click="editqty({{$detail->id}})" style="cursor: pointer;">{{$detail->qty}}</td>
                                     <td>{{$detail->Product->unitlevel}}</td>
                                     <td wire:click="editprice({{$detail->id}})" style="cursor: pointer;">{{'Rp. '.number_format($detail->price,0,",",".")}}</td>
@@ -59,7 +59,7 @@
                                 <td>{{'Rp. '.number_format($pay,0,",",".")}}</td>
                             </tr>
                             <tr>
-                                <td colspan="6" style="text-align:right"><b>KEMBALIAN</b>
+                                <td colspan="6" style="text-align:right"><b>KEMBALI</b>
                                 <td>{{'Rp. '.number_format($pay-$total,0,",",".")}}</td>
                             </tr>
                             @else
@@ -68,7 +68,7 @@
                                 <td>{{'Rp. '.number_format(0,0,",",".")}}</td>
                             </tr>
                             <tr>
-                                <td colspan="6" style="text-align:right"><b>KEMBALIAN</b>
+                                <td colspan="6" style="text-align:right"><b>KEMBALI</b>
                                 <td>{{'Rp. '.number_format(0-$total,0,",",".")}}</td>
                             </tr>
                             @endif
@@ -94,13 +94,14 @@
             <input wire:model="detail_id" type="hidden" class="form-control">
             <div class="input-group flex-nowrap;" style="margin-top: 15px;">
                 <span class="input-group-text"  id="addon-wrapping">QTY</span>
-                <input wire:model="qty"  type="text" class="form-control" id="setfocus">
+                <input wire:model="qty"  type="number" class="form-control" id="setfocus">
+                <input wire:model="unitlevel" type="text" class="form-control" readonly style="margin-left: 5px; font-weight: bold">
                 @error('name') <small class="text-danger">{{$message}}</small>@enderror
             </div>
         </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" wire:click="confirmEditQty({{$detail_id}})">Save changes</button>
+          <button type="button" class="btn btn-primary" wire:click="confirmEditQty({{$detail_id}})">Simpan</button>
         </div>
       </div>
     </div>
@@ -122,13 +123,13 @@
             <input wire:model="detail_id" type="hidden" class="form-control">
             <div class="input-group flex-nowrap;" style="margin-top: 15px;">
                 <span class="input-group-text" id="addon-wrapping">Harga</span>
-                <input wire:model="price" type="text" class="form-control" id="setfocus2">
+                <input wire:model="price" type="number" class="form-control" id="setfocus2">
             </div>
             <div><small class="text-danger">{{$TransactionError2}}</small></div>
         </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" wire:click.prevent="confirmEditPrice({{$detail_id}})">Save changes</button>
+          <button type="button" class="btn btn-primary" wire:click.prevent="confirmEditPrice({{$detail_id}})">Simpan</button>
         </div>
       </div>
     </div>
@@ -170,15 +171,15 @@
                                     <table class="table table-hover">
                                         <?php $count = 0; ?>
                                             @foreach ($products as $product)
-                                                <?php if($count == 4) break; ?>
+                                            <?php /*if($count == 8) break;*/ ?>
                                                     <tbody>
-                                                        <tr wire:click="showProduct({{ $product->id }})" style="cursor: pointer;">
+                                                        <tr wire:click="showProduct('{{ $product->codeitem }}')" style="cursor: pointer;">
                                                             <td data-toggle="tooltip" title="{{$product->codeitem}}" style="white-space: nowrap;
                                                                 overflow: hidden;
-                                                                text-overflow: ellipsis; max-width: 13ch;">{{$product->codeitem}}</td>
+                                                                text-overflow: ellipsis; max-width: 8ch;">{{$product->codeitem}}</td>
                                                             <td data-toggle="tooltip" title="{{$product->name}}" style="white-space: nowrap;
                                                                 overflow: hidden;
-                                                                text-overflow: ellipsis; max-width: 20ch;">{{$product->name}}</td>
+                                                                text-overflow: ellipsis; max-width: 25ch;">{{$product->name}}</td>
                                                             <td>{{$product->unitlevel}}</td>
                                                         </tr>
                                                     </tbody>
@@ -229,7 +230,7 @@
                                 <p>{{$detail->Product->name}}</p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p>{{number_format($detail->qty,1,)}} {{ $detail->Product->unitlevel}}&nbsp;&nbsp;x {{'Rp. '.number_format($detail->price,0,",",".")}}</p>
+                                <p>{{number_format($detail->qty,2,)}} {{ $detail->Product->unitlevel}}&nbsp;&nbsp;x {{'Rp. '.number_format($detail->price,0,",",".")}}</p>
                                 <p>&nbsp;&nbsp;{{'Rp. '.number_format($detail->price * $detail->qty,0,",",".")}}</p>
                                 @php
                                     $total += $detail->price * $detail->qty;

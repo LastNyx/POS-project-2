@@ -2,7 +2,7 @@
     <div class="container-fluid" >
         <div class="row" style="margin:15px" id="noprint">
             <button wire:click='resetTransactionId()' type="button" class='btn btn-danger'>Back</button>
-            <button wire:click='print()' type="button" class='btn btn-success'>Print out struk</button>
+            <button wire:click='print()' type="button" class='btn btn-success' style="margin-left: 5px">Print out struk</button>
         </div>
         <div class="row" id="noprint">
             <div class ="col">
@@ -19,7 +19,7 @@
                                         <th scope="col">Kode</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Satuan</th>
-                                        <th scope="col">qty</th>
+                                        <th scope="col">Qty</th>
                                         <th scope="col">Harga</th>
                                         <th scope="col">Subtotal</th>
                                     </tr>
@@ -31,10 +31,12 @@
                                     @foreach ($details as $index => $detail)
                                     @if($detail->transaction_id == $transaction_id)
                                         <tr>
-                                            <td>{{$detail->Product->codeitem}}</td>
+                                            <td data-toggle="tooltip" title="{{$detail->Product->codeitem}}" style="white-space: nowrap;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis; max-width: 8ch;">{{$detail->Product->codeitem}}</td>
                                             <td data-toggle="tooltip" title="{{$detail->Product->name}}" style="white-space: nowrap;
                                                 overflow: hidden;
-                                                text-overflow: ellipsis; max-width: 12ch;">{{$detail->Product->name}}</td>
+                                                text-overflow: ellipsis; max-width: 15ch;">{{$detail->Product->name}}</td>
                                             <td>{{$detail->Product->unitlevel}}</td>
                                             <td>{{$detail->qty}}</td>
                                             <td>{{'Rp. '.number_format($detail->price,0,",",".")}}</td>
@@ -57,7 +59,7 @@
                                         <td>{{'Rp. '.number_format($pay,0,",",".")}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="5" style="text-align:right"><b>KEMBALIAN</b>
+                                        <td colspan="5" style="text-align:right"><b>KEMBALI</b>
                                         <td>{{'Rp. '.number_format($pay-$total,0,",",".")}}</td>
                                     </tr>
                                 </tfoot>
@@ -93,7 +95,7 @@
                                 <p>{{$detail->Product->name}}</p>
                             </div>
                             <div class="d-flex justify-content-between">
-                                <p>{{number_format($detail->qty,1,)}} {{ $detail->Product->unitlevel}}&nbsp;&nbsp;x {{'Rp. '.number_format($detail->price,0,",",".")}}</p>
+                                <p>{{number_format($detail->qty,2,)}} {{ $detail->Product->unitlevel}}&nbsp;&nbsp;x {{'Rp. '.number_format($detail->price,0,",",".")}}</p>
                                 <p>&nbsp;&nbsp;{{'Rp. '.number_format($detail->price * $detail->qty,0,",",".")}}</p>
 
                             </div>

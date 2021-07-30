@@ -12,7 +12,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <h2 class="font-weight-bold mb-3">DASHBOARD</h2>
+                                <h2 class="font-weight-bold mb-3">LAPORAN PENJUALAN</h2>
                             </div>
                         </div>
                         <div class="row">
@@ -56,7 +56,7 @@
                                 <table class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th scope="col">No.transaksi</th>
+                                            <th scope="col">No transaksi</th>
                                             <th scope="col">Tanggal Transaksi</th>
                                             <th scope="col" style="text-align:center">Action</th>
                                         </tr>
@@ -105,7 +105,6 @@
                                                         <table class="table table-bordered">
                                                             <thead>
                                                             <tr style="text-align: center;">
-                                                                <th scope="col">No</th>
                                                                 <th scope="col">Nama Barang</th>
                                                                 <th scope="col">Harga Modal</th>
                                                                 <th scope="col">Harga Jual</th>
@@ -150,12 +149,11 @@
                                                                         return $a['qty'] < $b['qty'];
                                                                     }
 
-                                                                    usort($groups, "cmp");
+
                                                                 @endphp
 
                                                                 @foreach ($groups as $key => $value)
                                                                     <tr>
-                                                                        <td>{{$key+1}}</td>
                                                                         <td data-toggle="tooltip" title="{{$groups[$key]['name']}}" style="white-space: nowrap;
                                                                             overflow: hidden;
                                                                             text-overflow: ellipsis; max-width: 20ch;">{{$groups[$key]['name']}}</td>
@@ -173,12 +171,12 @@
                                                             </tbody>
                                                             <tfoot>
                                                                 <tr>
-                                                                    <td colspan="6"><b>TOTAL PENJUALAN BULAN INI</b></td>
+                                                                    <td colspan="5"><b>TOTAL PENJUALAN BULAN INI</b></td>
                                                                     <td style="text-align: center;">{{'Rp. '.number_format($totaltransactions,0,",",".")}}</td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td colspan="7"><b>TOTAL KEUNTUNGAN BULAN INI</b></td>
+                                                                    <td colspan="6"><b>TOTAL KEUNTUNGAN BULAN INI</b></td>
                                                                     <td style="text-align: center;">{{'Rp. '.number_format($totaltransactions-$totalpenjualanmodal,0,",",".")}}</td>
                                                                 </tr>
                                                             </tfoot>

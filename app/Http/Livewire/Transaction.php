@@ -19,13 +19,13 @@ class Transaction extends Component
 
     public function render()
     {
-        $products = productModel::orderBy('created_at','DESC')->get();
+        $products = productModel::orderBy('name','asc')->get();
         $details = detailsModel::orderBy('created_at','DESC')->get();
         return view('livewire.transaction', [
             'details' =>$details,
             'products' =>$products,
             'products' =>productModel::where('name', 'like', '%'.$this->search.'%')
-            ->orwhere('codeitem', 'like', '%'.$this->search.'%')->get()]);
+            ->orwhere('codeitem', 'like', '%'.$this->search.'%')->orderBy('name','asc')->get()]);
 
     }
 
@@ -59,8 +59,10 @@ class Transaction extends Component
     public function editqty($id){
 
         $details = detailsModel::find($id);
-        $this->detail_id = $details['codeitem'];
+        $products = productModel::find($details['product_id']);
+        $this->detail_id = $details['id'];
         $this->qty = $details['qty'];
+        $this->unitlevel = $products['unitlevel'];
         $this->dispatchBrowserEvent('openModal');
 
 
