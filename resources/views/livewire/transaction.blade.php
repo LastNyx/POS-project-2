@@ -164,7 +164,7 @@
                     <form onkeydown="return event.key != 'Enter';">
                         <div class="input-group">
                             <span class="input-group-text" id="addon-wrapping">Cari</span>
-                            <input wire:model="search" type="search" class="form-control" placeholder="Nama Barang/Kode Barang" aria-label="Username" aria-describedby="addon-wrapping" id="setfocusitem">
+                            <input wire:model="search" wire:keydown.enter="showProduct('{{$search}}')" type="search" class="form-control" placeholder="Nama Barang/Kode Barang" aria-label="Username" aria-describedby="addon-wrapping" id="setfocusitem">
                         </div>
                             @if(!empty($search))
                                 <div class="input-group flex-nowrap" style="margin-top: 15px;">

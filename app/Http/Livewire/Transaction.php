@@ -30,7 +30,8 @@ class Transaction extends Component
     }
 
     public function showProduct($id){
-        $products = productModel::find($id);
+        try{
+            $products = productModel::find($id);
         $this->codeitem = $products['codeitem'];
         $this->name = $products['name'];
         $this->unitlevel =$products['unitlevel'];
@@ -38,7 +39,6 @@ class Transaction extends Component
 
         $this->search = '';
 
-        try{
             $details = detailsModel::Create([
                 'product_id' => $this->codeitem,
                 'price' => $this->price,
@@ -51,6 +51,9 @@ class Transaction extends Component
 
         } catch (\Illuminate\Database\QueryException $e){
             $this->TransactionError = 'Barang sudah ada!';
+            $this->dispatchBrowserEvent('openModalError');
+        } catch (\Exception $e) {
+            $this->TransactionError = 'Barang tidak ada!';
             $this->dispatchBrowserEvent('openModalError');
         };
 
