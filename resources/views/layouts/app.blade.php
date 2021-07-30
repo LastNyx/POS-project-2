@@ -33,17 +33,17 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg-body" id="noprint">
-            <div class="container-fluid"  style="background-color:cadetblue; margin: 5px; padding-left: 20px;">
-                <b> <a class="navbar-brand" href="\">Sumber Jaya</a> </b>
+            <div class="container-fluid"  style="background-color:rgb(23, 110, 240); margin: 5px; padding-left: 20px;">
+                <b> <a class="navbar-brand" href="\" style="font-family: Tahoma">Sumber Jaya</a> </b>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                     <a class="nav-link" style="pointer-events: none; cursor: default;" href="#">|</a>
-                    <a class="nav-link" href="\transaction">Penjualan</a>
+                    <a hover class="nav-link" href="/transaction" style="font-family: Tahoma;" >Penjualan</a>
                     <a class="nav-link" style="pointer-events: none; cursor: default;" href="#">|</a>
-                    <a class="nav-link" href="\products" wire:click.prevent="productToggle()">Barang</a>
+                    <a class="nav-link" href="/products" wire:click.prevent="productToggle()" style="font-family: Tahoma">Barang</a>
                     <a class="nav-link" style="pointer-events: none; cursor: default;" href="#">|</a>
                     </div>
                 </div>

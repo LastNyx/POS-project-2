@@ -28,11 +28,11 @@ class Product extends Component
 
     public function render()
     {
-        $products = productModel::orderBy('created_at','DESC')->get();
+        $products = productModel::orderBy('name','asc')->get();
         return view('livewire.product', [
             'products' =>$products,
             'products' =>productModel::where('name', 'like', '%'.$this->search.'%')
-            ->orwhere('codeitem', 'like', '%'.$this->search.'%')->paginate(7),
+            ->orwhere('codeitem', 'like', '%'.$this->search.'%')->orderBy('name','asc')->paginate(7),
         ]);
     }
 

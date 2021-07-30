@@ -3,7 +3,7 @@
         <div class = "col-md-4">
             <div class ="card sticky-top">
                 <div class="card-body">
-                    <h2 class="font-weight-bold mb-3">Form Produk</h2>
+                    <h2 class="font-weight-bold mb-3">Form Barang</h2>
                     @if($updateMode == False)
                         <livewire:product-create></livewire:product-create>
                     @else
@@ -18,13 +18,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Delete</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">HAPUS BARANG</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <H2 class="text" style="text-align:center">Yakin Menghapus?</H2>
+            <H2 class="text" style="text-align:center">Yakin Ingin Menghapus?</H2>
         </form>
         </div>
         <div class="modal-footer">
